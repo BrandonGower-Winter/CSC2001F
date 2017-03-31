@@ -6,7 +6,7 @@ JCLASSDIR = bin
 .java.class:
 	$(JC) -d $(JCLASSDIR)/. $(JFLAGS) $*.java
 
-CLASSES = src/BinarySearchTree.java src/Person.java
+CLASSES = src/BinarySearchTree.java src/Person.java src/PrintIt.java
 
 default: classes
 

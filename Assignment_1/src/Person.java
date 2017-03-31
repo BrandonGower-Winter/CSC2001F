@@ -18,17 +18,23 @@ public class Person implements Comparable<Person>
         this.telephoneNumber = telephoneNumber;
         this.address = address;
     }
+    public Person(String name)
+    {
+      this.name = name;
+      telephoneNumber = "";
+      address = "";
+    }
     //Methods
     public String getName()
     {
         return name;
     }
-    
+
     public int compareTo(Person p)
     {
-        return name.compareTo(p.getName());
+        return  -1 * name.compareTo(p.getName());
     }
-    
+
     public String toString()
     {
         return name+"\t"+ telephoneNumber+"\t"+address;
