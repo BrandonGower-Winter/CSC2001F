@@ -1,16 +1,25 @@
 JC = javac
 JFLAGS = -g
-JCLASSDIR = bin
+JCLASSDIR = bin/
+SRC = src/
+JUNITPATH = .:../lib/junit/junit.jar
 
 .SUFFIXES: .java .class
 .java.class:
-	$(JC) -cp .:./bin -d $(JCLASSDIR)/. $(JFLAGS) $*.java
+	$(JC) -cp .:./bin -d $(JCLASSDIR). $(JFLAGS) $*.java
 
-CLASSES = src/BinarySearchTree.java src/Person.java src/PrintIt.java src/SearchIt.java src/SearchItLinear.java
+CLASSES = $(SRC)BinarySearchTree.java\
+					$(SRC)Person.java src/PrintIt.java\
+					$(SRC)SearchIt.java\
+					$(SRC)SearchItLinear.java
+
+TESTS = test.java
 
 default: classes
 
 classes: $(CLASSES:.java=.class)
+
+test: java -cp $(JUNITPATH) org.junit.runner.JUnitCore $(TESTS)
 
 clean:
 			$(RM) $(JCLASSDIR)/*.class

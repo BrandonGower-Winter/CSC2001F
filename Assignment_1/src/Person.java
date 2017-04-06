@@ -1,17 +1,15 @@
-/*
-Brandon Gower-Winter
-Person Data Model implements comparable
-*/
-
 import java.lang.*;
-
+/**
+* The Person Data Model that implements the comparable interface.
+* A Person object stores information on a person's name. address and telephoneNumber.
+* @author Brandon Gower-Winter
+*/
 public class Person implements Comparable<Person>
 {
     //private variables
     private String name;
     private String telephoneNumber;
     private String address;
-    //Constructor
     /**
     * Constructor of the person object
     * @param name The name of the person object you wish to create.

@@ -21,7 +21,9 @@ public class PrintIt
                 String number = scLine.next();
                 String name = scLine.next();
                 bst.add(new Person(name,number,address));
+                scLine.close();
             }
+            scFIle.close();
             ArrayList<Person> data = new ArrayList();
             bst.getDataInOrder(data);
             for(int i = 0; i < data.size(); i++)
