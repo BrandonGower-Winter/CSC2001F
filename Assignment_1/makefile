@@ -32,6 +32,15 @@ runtests:
 generatedocuments:
 		javadoc -d ./doc/ $(CLASSES)
 
+runprintit:
+					java -cp .:$(JCLASSDIR) PrintIt
+
+runsearchit:
+					java -cp .:$(JCLASSDIR) SearchIt
+
+runSearchitlinear:
+					java -cp .:$(JCLASSDIR) SearchItLinear
+
 clean:
 			$(RM) $(JCLASSDIR)*.class
 			$(RM) $(DOCPATH)*

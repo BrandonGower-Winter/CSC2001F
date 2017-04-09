@@ -6,7 +6,7 @@ import java.util.*;
 * The T parameter must implement the Comparable interface.
 * The tree does not have a left and right node.
   It uses lessNode and greaterNode in which values smaller than and values greater
-  than the current node are stored respectively
+  than the current node are stored respectively.
 * @author Brandon Gower-Winter
 */
 public class BinarySearchTree<T extends Comparable>
@@ -80,9 +80,9 @@ public class BinarySearchTree<T extends Comparable>
             return null;
     }
     /**
-    * Prints the data in order within the Binary Seach Tree to the output stream
-    * Prints from the root node
-    * Uses in-order traversal algorithm
+    * Prints the data in order within the Binary Seach Tree to the output stream.
+    * Prints from the root node.
+    * Uses in-order traversal algorithm.
     */
     public void printDataInOrder()
     {
@@ -96,9 +96,9 @@ public class BinarySearchTree<T extends Comparable>
 
     }
     /**
-    * Prints the data in order within the Binary Seach Tree to the output stream
-    * Prints from the specified node
-    * Uses in-order traversal algorithm
+    * Prints the data in order within the Binary Seach Tree to the output stream.
+    * Prints from the specified node.
+    * Uses in-order traversal algorithm.
     @param node Specifies which node to start printing from.
     */
     public void printDataInOrder(Node<T> node)
@@ -112,10 +112,10 @@ public class BinarySearchTree<T extends Comparable>
         printDataInOrder(node.greaterNode);
     }
     /**
-    * Returns the data of the Binary Search Tree
-    * Returns from root node
-    * Uses in-order traversal algorithm
-    * @param data The ArrayList that will have the data stored in it
+    * Returns the data of the Binary Search Tree.
+    * Returns from root node.
+    * Uses in-order traversal algorithm.
+    * @param data The ArrayList that will have the data stored in it.
     */
     public void getDataInOrder(ArrayList<T> data)
     {
@@ -132,11 +132,11 @@ public class BinarySearchTree<T extends Comparable>
       getDataInOrder(root.greaterNode,data);
     }
     /**
-    * Returns the data of the Binary Search Tree
-    * Returns from specified node
-    * Uses in-order traversal algorithm
-    * @param node Node to start getting from data from
-    * @param data The ArrayList that will have the data stored in it
+    * Returns the data of the Binary Search Tree.
+    * Returns from specified node.
+    * Uses in-order traversal algorithm.
+    * @param node Node to start getting from data from.
+    * @param data The ArrayList that will have the data stored in it.
     */
     public void getDataInOrder(Node<T> node, ArrayList<T> data)
     {
@@ -179,7 +179,7 @@ public class BinarySearchTree<T extends Comparable>
         }
         /**
         * Returns the less node.
-        * Returns null if there is no less node
+        * Returns null if there is no less node.
         * @return Node<T>
         */
         public Node<T> getLessNode()
@@ -267,7 +267,7 @@ public class BinarySearchTree<T extends Comparable>
         * Searches through the Binary Tree for the value specified.
         * Extention of find in the BinarySearchTree class.
         * Search is done recursively.
-        * @param valueToFind The value that will be looked for in the binary search tre.
+        * @param valueToFind The value that will be looked for in the binary search tree.
         * @return T
         */
         public T find(T valueToFind)

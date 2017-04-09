@@ -4,8 +4,8 @@ import java.io.FileNotFoundException;
 import java.io.File;
 
 /**
-* Main Class for task one of assignment one
-* Adds data to a binary search tree
+* Main Class for task one of assignment one.
+* Adds data to a binary search tree.
 * Uses in order traversal to print out the data in alphabetical order.
 * @author Brandon Gower-Winter
 */
@@ -16,7 +16,7 @@ public class PrintIt
         try
         {
             BinarySearchTree<Person> bst = new BinarySearchTree<Person>();
-            Scanner scFile = new Scanner(new File("../resources/testdata"));
+            Scanner scFile = new Scanner(new File("./resources/testdata"));
             while(scFile.hasNextLine())
             {
                 Scanner scLine = new Scanner(scFile.nextLine()).useDelimiter("\\|");

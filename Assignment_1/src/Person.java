@@ -11,10 +11,10 @@ public class Person implements Comparable<Person>
     private String telephoneNumber;
     private String address;
     /**
-    * Constructor of the person object
+    * Constructor of the person object.
     * @param name The name of the person object you wish to create.
     * @param telephoneNumber The telephone number of the person object you wish to create.
-    * @param address The address of the person ibject you wish to create
+    * @param address The address of the person ibject you wish to create.
     */
     public Person(String name, String telephoneNumber, String address)
     {
@@ -44,7 +44,6 @@ public class Person implements Comparable<Person>
     }
     /**
     * A comparison function that compares that compares the two name values of the objects you are comparing.
-    * Function is multiplied by -1 so that it considers A to be greater than Z
     * @param p The person object you wish to compare.
     * @return int
     */
