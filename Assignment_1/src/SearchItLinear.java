@@ -38,7 +38,7 @@ public class SearchItLinear
     //Get query from text file and print search results
     try
     {
-      Scanner scFile = new Scanner(new File("./resources/querydata"));
+      Scanner scFile = new Scanner(new File("./resources/querydataE"));
       while(scFile.hasNextLine())
       {
           String name = scFile.nextLine();

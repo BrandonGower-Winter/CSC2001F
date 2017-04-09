@@ -1,6 +1,6 @@
 #!bin/bash
 
-for i in {1..10};
+for i in {1..20};
   do
-      java -cp bin/:resources/ SearchIt
+      /usr/bin/time -f %U'\t'%S java -cp bin/:resources/ SearchIt &>> resources/TimeBSTRecordsEnd
   done
