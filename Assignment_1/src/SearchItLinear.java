@@ -38,7 +38,7 @@ public class SearchItLinear
     //Get query from text file and print search results
     try
     {
-      Scanner scFile = new Scanner(new File("./resources/querydataE"));
+      Scanner scFile = new Scanner(new File("./resources/querydata"));
       while(scFile.hasNextLine())
       {
           String name = scFile.nextLine();
@@ -55,11 +55,11 @@ public class SearchItLinear
           }
           if(found)
           {
-            //System.out.println(personToFind.toString());
+            System.out.println(personToFind.toString());
           }
           else
           {
-            //System.out.println(personToFind.getName() + " was not found.");
+            System.out.println(personToFind.getName() + " was not found.");
           }
       }
     }
