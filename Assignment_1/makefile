@@ -15,7 +15,8 @@ CLASSES = $(SRC)BinarySearchTree.java\
 					$(SRC)SearchItLinear.java
 
 TESTFILES = $(TEST)TestBinarySearchTree.java\
-						$(TEST)TestRunner.java
+						$(TEST)TestRunner.java\
+						$(TEST)TestPerson.java
 
 default: classes compiletests
 
