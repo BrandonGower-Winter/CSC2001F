@@ -50,7 +50,7 @@ public class Person implements Comparable<Person>
     */
     public int compareTo(Person p)
     {
-        return  -1 * name.compareTo(p.getName());
+        return name.compareTo(p.getName());
     }
     /**
     * The toString function that returns the name, telephoneNumber and address seperated by tabs as one String.

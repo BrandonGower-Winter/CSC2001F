@@ -19,7 +19,7 @@ public class SearchItLinear
     //Get data from text file
     try
     {
-      Scanner scFile = new Scanner(new File("testdata"));
+      Scanner scFile = new Scanner(new File("../resources/testdata"));
       while(scFile.hasNextLine())
       {
         Scanner scLine = new Scanner(scFile.nextLine()).useDelimiter("\\|");
@@ -38,7 +38,7 @@ public class SearchItLinear
     //Get query from text file and print search results
     try
     {
-      Scanner scFile = new Scanner(new File("querydata"));
+      Scanner scFile = new Scanner(new File("../resources/querydata"));
       while(scFile.hasNextLine())
       {
           String name = scFile.nextLine();

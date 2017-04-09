@@ -16,7 +16,7 @@ public class PrintIt
         try
         {
             BinarySearchTree<Person> bst = new BinarySearchTree<Person>();
-            Scanner scFile = new Scanner(new File("testdata"));
+            Scanner scFile = new Scanner(new File("../resources/testdata"));
             while(scFile.hasNextLine())
             {
                 Scanner scLine = new Scanner(scFile.nextLine()).useDelimiter("\\|");
@@ -26,7 +26,7 @@ public class PrintIt
                 bst.add(new Person(name,number,address));
                 scLine.close();
             }
-            scFIle.close();
+            scFile.close();
             ArrayList<Person> data = new ArrayList();
             bst.getDataInOrder(data);
             for(int i = 0; i < data.size(); i++)

@@ -13,7 +13,7 @@ public class BinarySearchTree<T extends Comparable>
 {
     //private variables
     private Node<T> root;
-    private int size;
+    private int count;
     /**
     * Default constructor for Binary Search Tree.
     * Sets root node to null
@@ -21,7 +21,6 @@ public class BinarySearchTree<T extends Comparable>
     public BinarySearchTree()
     {
         root=null;
-        size = 0;
     }
     /**
     * Constructor for Binary Search Tree that has one argument
@@ -30,7 +29,6 @@ public class BinarySearchTree<T extends Comparable>
     public BinarySearchTree(T rootValue)
     {
         root = new Node<T>(rootValue);
-        size = 1;
     }
 
     //Add new item to Tree
@@ -44,7 +42,29 @@ public class BinarySearchTree<T extends Comparable>
             root.add(newValue);
         else
             root = new Node(newValue);
-        size++;
+    }
+    /**
+    * Returns the number of nodes in the Binary Search Tree from the root node
+    * @return int
+    */
+    public int Count()
+    {
+      if(root == null)
+        return 0;
+
+      return Count(root);
+    }
+    /**
+    * Returns the number of nodes in the Binary Search Tree from the specified node
+    * @param node The node to start counting from.
+    * @return int
+    */
+    public int Count(Node<T> node)
+    {
+      if(node == null)
+        return 0;
+
+      return 1 + Count(node.lessNode) + Count(node.greaterNode);
     }
     /**
     * Finds Object in Binrary Search Tree
@@ -217,16 +237,6 @@ public class BinarySearchTree<T extends Comparable>
             int compareVal = value.compareTo(newValue);
             if(compareVal > 0)
             {
-                //Greater than
-                if(greaterNode == null)
-                {
-                    greaterNode = new Node<T>(newValue);
-                    return;
-                }
-                greaterNode.add(newValue);
-            }
-            else if(compareVal < 0)
-            {
                 //Less than
                 if(lessNode == null)
                 {
@@ -234,6 +244,16 @@ public class BinarySearchTree<T extends Comparable>
                     return;
                 }
                 lessNode.add(newValue);
+            }
+            else if(compareVal < 0)
+            {
+                //Greater than
+                if(greaterNode == null)
+                {
+                    greaterNode = new Node<T>(newValue);
+                    return;
+                }
+                greaterNode.add(newValue);
             }
             else
             {
@@ -259,7 +279,7 @@ public class BinarySearchTree<T extends Comparable>
                 return value;
             }
             //Recursive Step
-            if(compareVal > 0)
+            if(compareVal < 0)
             {
                 if(greaterNode==null)
                     return null;

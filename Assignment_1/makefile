@@ -2,24 +2,30 @@ JC = javac
 JFLAGS = -g
 JCLASSDIR = bin/
 SRC = src/
-JUNITPATH = .:../lib/junit/junit.jar
+TEST = test/
+JUNITPATH = ./bin/:../lib/junit/junit.jar:../lib/junit/hamcrest_core.jar
 
 .SUFFIXES: .java .class
 .java.class:
-	$(JC) -cp .:./bin -d $(JCLASSDIR). $(JFLAGS) $*.java
+						$(JC) -cp .:./bin -d $(JCLASSDIR) $(JFLAGS) $*.java
 
 CLASSES = $(SRC)BinarySearchTree.java\
 					$(SRC)Person.java src/PrintIt.java\
 					$(SRC)SearchIt.java\
 					$(SRC)SearchItLinear.java
 
-TESTS = test.java
+TESTFILES = $(TEST)TestBinarySearchTree.java\
+						$(TEST)TestRunner.java
 
-default: classes
+default: classes compiletests
 
 classes: $(CLASSES:.java=.class)
 
-test: java -cp $(JUNITPATH) org.junit.runner.JUnitCore $(TESTS)
+compiletests:
+						$(JC) -cp $(JUNITPATH) -d $(JCLASSDIR) $(TESTFILES)
+
+runtests:
+		java -cp $(JUNITPATH) TestRunner
 
 clean:
 			$(RM) $(JCLASSDIR)/*.class
