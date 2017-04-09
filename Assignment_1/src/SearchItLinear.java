@@ -1,13 +1,16 @@
-/*
-Brandon Gower-Winter
-Search data linearly
-*/
-
 import java.lang.*;
 import java.util.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 
+
+/**
+* Search it main class for task 3 of assignment 1
+* Data is stored in Array List
+* Queries are taken from a file
+* Query is searched for in the ArrayList and an appropriate result is returned.
+* @author Brandon Gower-Winter
+*/
 public class SearchItLinear
 {
   public static void main(String args[])

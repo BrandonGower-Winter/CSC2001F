@@ -1,11 +1,14 @@
-/* Brandon Gower-Winter
-Main Interface for task one of assignment one*/
-
 import java.lang.*;
 import java.util.*;
 import java.io.FileNotFoundException;
 import java.io.File;
 
+/**
+* Main Class for task one of assignment one
+* Adds data to a binary search tree
+* Uses in order traversal to print out the data in alphabetical order.
+* @author Brandon Gower-Winter
+*/
 public class PrintIt
 {
     public static void main(String args[])

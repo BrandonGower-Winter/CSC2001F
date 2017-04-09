@@ -1,12 +1,15 @@
-/*
-Brandon Gower-Winter
-Search It main class
-*/
 import java.lang.*;
 import java.util.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 
+/**
+* Search it main class for task 2 of assignment 1
+* Data is stored in Binary Search Tree
+* Queries are taken from a file
+* Query is searched for in the BST and an appropriate result is returned.
+* @author Brandon Gower-Winter
+*/
 public class SearchIt
 {
   public static void main(String args[])
