@@ -4,6 +4,7 @@ JCLASSDIR = bin/
 SRC = src/
 TEST = test/
 JUNITPATH = ./bin/:../lib/junit/junit.jar:../lib/junit/hamcrest_core.jar
+DOCPATH = doc/
 
 .SUFFIXES: .java .class
 .java.class:
@@ -28,5 +29,9 @@ compiletests:
 runtests:
 		java -cp $(JUNITPATH) TestRunner
 
+generatedocuments:
+		javadoc -d ./doc/ $(CLASSES)
+
 clean:
-			$(RM) $(JCLASSDIR)/*.class
+			$(RM) $(JCLASSDIR)*.class
+			$(RM) $(DOCPATH)*
