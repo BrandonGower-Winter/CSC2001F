@@ -11,7 +11,8 @@ DOCPATH = doc/
 						$(JC) -cp .:./bin -d $(JCLASSDIR) $(JFLAGS) $*.java
 
 CLASSES = $(SRC)BinarySearchTree.java\
-					$(SRC)Person.java
+					$(SRC)Person.java\
+					$(SRC)AVLTree.java
 
 TESTFILES = $(TEST)TestBinarySearchTree.java\
 						$(TEST)TestRunner.java\
