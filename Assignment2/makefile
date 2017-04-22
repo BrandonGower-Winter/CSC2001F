@@ -3,16 +3,16 @@ JFLAGS = -g
 JCLASSDIR = bin/
 SRC = src/
 TEST = test/
-JUNITPATH = ./bin/:../lib/junit/junit.jar:../lib/junit/hamcrest_core.jar
+JUNITPATH = ./bin/:../lib/junit/junit.jar:../lib/junit/hamcrest_core.jar:../packages
 DOCPATH = doc/
 
 .SUFFIXES: .java .class
 .java.class:
-						$(JC) -cp .:./bin -d $(JCLASSDIR) $(JFLAGS) $*.java
+						$(JC) -cp .:./bin:../packages/ -d $(JCLASSDIR) $(JFLAGS) $*.java
 
-CLASSES = $(SRC)BinarySearchTree.java\
-					$(SRC)Person.java\
-					$(SRC)AVLTree.java
+CLASSES = $(SRC)Person.java
+
+
 
 TESTFILES = $(TEST)TestBinarySearchTree.java\
 						$(TEST)TestRunner.java\
@@ -32,5 +32,5 @@ generatedocuments:
 		javadoc -d ./doc/ $(CLASSES)
 
 clean:
-			$(RM) $(JCLASSDIR)*.class
+			$(RM) $(JCLASSDIR)*
 			$(RM) $(DOCPATH)*
