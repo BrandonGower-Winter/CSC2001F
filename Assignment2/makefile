@@ -31,7 +31,7 @@ classes: $(CLASSES:.java=.class)
 compiletests:
 						$(JC) -cp $(JUNITPATH) -d $(JCLASSDIR) $(TESTFILES)
 
-runtests:
+junit:
 		java -cp $(JUNITPATH) TestRunner
 
 runSearchIt:

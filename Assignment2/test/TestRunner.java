@@ -5,7 +5,7 @@ public class TestRunner
 {
   public static void main(String[] args)
   {
-    Class[] classes = {TestBinarySearchTree.class, TestPerson.class};
+    Class[] classes = {TestBinarySearchTree.class, TestPerson.class, TestAVLTree.class};
     Result r = JUnitCore.runClasses(classes);
     for(Failure f : r.getFailures())
     {
