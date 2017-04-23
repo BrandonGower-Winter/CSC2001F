@@ -39,69 +39,105 @@ public class BinarySearchTree<T extends Comparable>
     * Add object to the Binrary Search Tree
     * @param newValue Object to add to the Binary Search Tree
     */
-    public boolean add(T valueToAdd)
+    public boolean add(T value)
     {
-      return add(valueToAdd,root);
-    }
-
-    public boolean add(T valueToAdd, BinaryNode<T> currentNode)
-    {
-      if(currentNode == null)
+      if(root == null)
       {
-        currentNode = new BinaryNode(valueToAdd);
+        root = new BinaryNode(value);
         if(debug)
-          System.out.println("Object: " + valueToAdd.toString() + " was added to the tree.");
+          System.out.println("Object: " + root.value.toString() + " was added to the tree at root.");
         return true;
       }
-      if(currentNode.compareTo(valueToAdd) > 0)
+      if(root.compareTo(value) > 0)
       {
-        return add(valueToAdd,currentNode.greatNode);
+        if(root.lessNode == null)
+          root.lessNode = new BinaryNode(value);
+        else
+          return add(value,root.lessNode);
       }
       else
       {
-        return add(valueToAdd,currentNode.lessNode);
+        if(root.greatNode == null)
+          root.greatNode = new BinaryNode(value);
+        else
+          return add(value,root.greatNode);
       }
+      return true;
     }
 
-    public boolean delete()
+    public boolean add(T value, BinaryNode<T> node)
     {
-       return delete(root);
-    }
-    //Add Balance
-    public boolean delete(BinaryNode<T> node)
-    {
-      //Implement
       if(node == null)
       {
-        return false;
-      }
-      if(node.lessNode == null && node.greatNode == null)
-      {
+        node = new BinaryNode(value);
         if(debug)
-          System.out.println("Object: " + node.value.toString() + " was deleted from the tree.\nHad no children.");
-        node = null;
+          System.out.println("Object: " + node.value.toString() + " was added to the tree.");
         return true;
       }
-      if(node.lessNode != null && node.greatNode == null)
+      if(node.compareTo(value) > 0)
       {
-        if(debug)
-          System.out.println("Object: " + node.value.toString() + " was deleted from the tree.\nHad 1 child: lessNode.");
-        node = node.lessNode;
-        return true;
+        if(node.lessNode == null)
+          node.lessNode = new BinaryNode(value);
+        else
+          return add(value,node.lessNode);
       }
-      if(node.greatNode != null && node.lessNode == null)
+      else
       {
-        if(debug)
-          System.out.println("Object: " + node.value.toString() + " was deleted from the tree.\nHad 1 child: greatNode.");
-        node = node.greatNode;
-        return true;
+        if(node.greatNode == null)
+          node.greatNode = new BinaryNode(value);
+        else
+          return add(value,node.greatNode);
       }
-      if(debug)
-        System.out.println("Object: " + node.value.toString() + " was deleted from the tree.\nHad 2 children.");
-      BinaryNode<T> minNode = getMin(node.greatNode);
-      node.value = minNode.value;
-      minNode = null;
       return true;
+    }
+
+    public void delete(T value)
+    {
+      root = delete(value,root);
+    }
+    public BinaryNode<T> delete(T value,BinaryNode<T> node)
+    {
+      if(node == null)
+      {
+        return null;
+      }
+      int compareVal = node.compareTo(value);
+      if(compareVal > 0)
+      {
+        node.lessNode = delete(value,node.lessNode);
+      }
+      else if(compareVal < 0)
+      {
+        node.greatNode = delete(value,node.greatNode);
+      }
+      else
+      {
+        if(node.lessNode == null && node.greatNode == null)
+        {
+          if(debug)
+            System.out.println("Object: " + node.value.toString() + " was deleted from the tree.\nHad no children.");
+          return null;
+        }
+        if(node.lessNode != null && node.greatNode == null)
+        {
+          if(debug)
+            System.out.println("Object: " + node.value.toString() + " was deleted from the tree.\nHad 1 child: lessNode.");
+          return node.lessNode;
+        }
+        if(node.greatNode != null && node.lessNode == null)
+        {
+          if(debug)
+            System.out.println("Object: " + node.value.toString() + " was deleted from the tree.\nHad 1 child: greatNode.");
+          return node.greatNode;
+        }
+        if(debug)
+          System.out.println("Object: " + node.value.toString() + " was deleted from the tree.\nHad 2 children.");
+        BinaryNode<T> minNode = getMin(node.greatNode);
+        node.greatNode = delete(minNode.value,node.greatNode);
+        node.value = minNode.value;
+        return node;
+      }
+      return node;
     }
     /**
     * Returns the number of nodes in the Binary Search Tree from the root node
@@ -154,7 +190,33 @@ public class BinarySearchTree<T extends Comparable>
     */
     public BinaryNode<T> find(T value)
     {
-        return find(value,root);
+      if(root == null)
+      {
+        if(debug)
+          System.out.println("Searched for Object: " + value.toString() + " and was not found");
+        return null;
+      }
+      int compareVal = root.compareTo(value);
+      if(compareVal == 0)
+      {
+        if(debug)
+          System.out.println("Searched for Object: " + value.toString() + " and was found");
+        return root;
+      }
+      if(compareVal < 0)
+      {
+        if(root.greatNode == null)
+          return null;
+        else
+        return find(value, root.greatNode);
+      }
+      else
+      {
+        if(root.lessNode == null)
+          return null;
+        else
+          return find(value,root.lessNode);
+      }
     }
 
     public BinaryNode<T> find(T value, BinaryNode<T> node)
@@ -172,13 +234,19 @@ public class BinarySearchTree<T extends Comparable>
           System.out.println("Searched for Object: " + value.toString() + " and was found");
         return node;
       }
-      if(compareVal > 0)
+      if(compareVal < 0)
       {
-        return find(value, node.lessNode);
+        if(node.greatNode == null)
+          return null;
+        else
+          return find(value, node.greatNode);
       }
       else
       {
-        return find(value,node.greatNode);
+        if(node.lessNode == null)
+          return null;
+        else
+          return find(value,node.lessNode);
       }
     }
     /**

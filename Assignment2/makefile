@@ -31,6 +31,12 @@ compiletests:
 runtests:
 		java -cp $(JUNITPATH) TestRunner
 
+runSearchIt:
+		java -cp $(JUNITPATH) SearchIt
+
+runSearchAVL:
+		java -cp $(JUNITPATH) SearchAVL
+
 generatedocuments:
 		javadoc -d ./doc/ $(CLASSES)
 

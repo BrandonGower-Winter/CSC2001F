@@ -15,6 +15,7 @@ public class SearchIt
   public static void main(String args[])
   {
     BinarySearchTree<Person> bst = new BinarySearchTree();
+    //bst.Debug(true);
     //Get data from text file
     try
     {
@@ -42,15 +43,15 @@ public class SearchIt
       {
           String name = scFile.nextLine();
           Person personToFind = new Person(name);
-          personToFind = bst.find(personToFind).Value();
+          BinaryNode<Person> foundPerson= bst.find(personToFind);
 
-          if(personToFind == null)
+          if(foundPerson == null)
           {
             System.out.println(name + " was not found");
           }
           else
           {
-            System.out.println(personToFind.toString());
+            System.out.println(foundPerson.Value().toString());
           }
       }
     }

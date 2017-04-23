@@ -16,75 +16,79 @@ public class AVLTree<T extends Comparable> extends BinarySearchTree<T>
 
   public boolean add(T value)
   {
+    if(super.root == null)
+    {
+      root = new BinaryNode(value);
+      return true;
+    }
     boolean success = super.add(value,super.root);
-    balance();
+    root = balance();
     return success;
   }
 
   public boolean add(T value,BinaryNode<T> node)
   {
     boolean success = super.add(value,node);
-    balance();
+    root = balance();
     return success;
   }
 
-  public boolean delete()
+  public void delete(T value)
   {
-    boolean success = super.delete(super.root);
-    balance();
-    return success;
+    super.delete(value);
+    root = balance();
+
   }
 
-  public boolean delete(BinaryNode<T> node)
-  {
-    boolean success = super.delete(node);
-    balance();
-    return success;
-  }
-
-  private void rotateLeft(BinaryNode<T> node)
+  private BinaryNode<T> rotateLeft(BinaryNode<T> node)
   {
     if(super.debug)
       System.out.println("Rotate " + node.value.toString() +" left.");
-    BinaryNode<T> tempNode = node;
-    node = node.greatNode;
-    tempNode.greatNode = node.lessNode;
-    node.lessNode = tempNode;
+    BinaryNode<T> tempNode = node.greatNode;
+    node.greatNode = tempNode.lessNode;
+    tempNode.lessNode = node;
+    if(super.debug)
+      System.out.println("Rotate complete " + tempNode.value.toString()
+       +" now head node.");
+    return tempNode;
   }
 
-  private void rotateRight(BinaryNode<T> node)
+  private BinaryNode<T> rotateRight(BinaryNode<T> node)
   {
     if(super.debug)
       System.out.println("Rotate " + node.value.toString() +" right.");
-    BinaryNode<T> tempNode = node;
-    node = node.lessNode;
-    tempNode.lessNode = node.greatNode;
-    node.greatNode = tempNode;
+    BinaryNode<T> tempNode = node.lessNode;
+    node.lessNode = tempNode.greatNode;
+    tempNode.greatNode = node;
+    if(super.debug)
+      System.out.println("Rotate complete " + tempNode.value.toString()
+       +" now head node.");
+    return tempNode;
   }
 
-  private void balance()
+  private BinaryNode<T> balance()
   {
-    balance(root);
+    return balance(root);
   }
 
-  private void balance(BinaryNode<T> node)
+  private BinaryNode<T> balance(BinaryNode<T> node)
   {
     if(node == null)
-      return;
+      return null;
 
     int difference = super.Height(node.greatNode) - super.Height(node.lessNode);
 
     if(difference > 1)
     {
-      balance(node.greatNode);
+      node.greatNode = balance(node.greatNode);
     }
     else if(difference < -1)
     {
-      balance(node.lessNode);
+      node.lessNode = balance(node.lessNode);
     }
     else
     {
-      return;
+      return node;
     }
     //Get difference again
     difference = super.Height(node.greatNode) - super.Height(node.lessNode);
@@ -94,24 +98,24 @@ public class AVLTree<T extends Comparable> extends BinarySearchTree<T>
       if(super.debug)
         System.out.println("Balance required for " + node.value.toString() +" in greatNode");
       if(super.Height(node.greatNode.lessNode) > 0)
-        rotateRight(node.greatNode);
-      rotateLeft(node);
+        node.greatNode = rotateRight(node.greatNode);
+      node = rotateLeft(node);
     }
     else if(difference < -1)
     {
       if(super.debug)
         System.out.println("Balance required for " + node.value.toString() +" in lessNode");
       if(super.Height(node.lessNode.greatNode) > 0)
-        rotateLeft(node.lessNode);
-      rotateRight(node);
+        node.lessNode = rotateLeft(node.lessNode);
+      node = rotateRight(node);
     }
     else
     {
       if(super.debug)
         System.out.println("No Balance required for " + node.value.toString());
-      return;
+      return node;
     }
-
+    return node;
   }
 
 }
