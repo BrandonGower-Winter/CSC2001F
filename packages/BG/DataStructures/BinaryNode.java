@@ -12,19 +12,29 @@ public class BinaryNode<T extends Comparable>
     T value;
     BinaryNode<T> lessNode;
     BinaryNode<T> greatNode;
-
+    /**
+    * Constructor for Binary node.
+    * @param value The value of the BinaryNode
+    */
     public BinaryNode(T value)
     {
       this.value = value;
       lessNode = null;
       greatNode = null;
     }
-
+    /**
+    * Comparison function that makes use of an objects compareTo() function and return the result.
+    * @param value Value to compare.
+    * @return int
+    */
     public int compareTo(T value)
     {
       return this.value.compareTo(value);
     }
-
+    /**
+    * Getter for the value of the BinaryNode
+    * @return T
+    */
     public T Value()
     {
       return value;

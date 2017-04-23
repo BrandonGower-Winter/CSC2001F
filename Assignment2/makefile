@@ -5,6 +5,7 @@ SRC = src/
 TEST = test/
 JUNITPATH = ./bin/:../lib/junit/junit.jar:../lib/junit/hamcrest_core.jar:../packages
 DOCPATH = doc/
+PACKAGE = ../packages/BG/DataStructures/
 
 .SUFFIXES: .java .class
 .java.class:
@@ -14,7 +15,9 @@ CLASSES = $(SRC)Person.java\
 					$(SRC)SearchIt.java\
 					$(SRC)SearchAVL.java
 
-
+PACKAGEFILES = $(PACKAGE)AVLTree.java\
+							 $(PACKAGE)BinarySearchTree.java\
+							 $(PACKAGE)BinaryNode.java
 
 TESTFILES = $(TEST)TestBinarySearchTree.java\
 						$(TEST)TestRunner.java\
@@ -39,7 +42,8 @@ runSearchAVL:
 
 generatedocuments:
 		javadoc -d ./doc/ $(CLASSES)
+		javadoc -d ./doc/ $(PACKAGEFILES)
 
 clean:
 			$(RM)r $(JCLASSDIR)*
-			$(RM) $(DOCPATH)*
+			$(RM)r $(DOCPATH)*

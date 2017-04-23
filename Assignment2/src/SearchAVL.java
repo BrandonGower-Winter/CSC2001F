@@ -4,6 +4,13 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import BG.DataStructures.*;
 
+/**
+* Search it main class for task 1 of assignment 2
+* Data is stored in AVL Tree
+* Queries are taken from a file
+* Query is searched for in the AVL Tree and an appropriate result is returned.
+* @author Brandon Gower-Winter
+*/
 public class SearchAVL
 {
   public static void main(String[] args)

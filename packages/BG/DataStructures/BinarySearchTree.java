@@ -36,8 +36,9 @@ public class BinarySearchTree<T extends Comparable>
 
     //Add new item to Tree
     /**
-    * Add object to the Binrary Search Tree
-    * @param newValue Object to add to the Binary Search Tree
+    * Add object to the Binary Search Tree
+    * @param value Object to add to the Binary Search Tree
+    * @return boolean
     */
     public boolean add(T value)
     {
@@ -64,7 +65,13 @@ public class BinarySearchTree<T extends Comparable>
       }
       return true;
     }
-
+    //Add new item to Tree
+    /**
+    * Add object to the Binary Search Tree
+    * @param value Object to add to the Binary Search Tree
+    * @param node Node to attempt to add the object
+    * @return boolean
+    */
     public boolean add(T value, BinaryNode<T> node)
     {
       if(node == null)
@@ -90,11 +97,20 @@ public class BinarySearchTree<T extends Comparable>
       }
       return true;
     }
-
+    /**
+    * Delete object from the Binary Search Tree
+    * @param value Object to delete from the Binary Search Tree
+    */
     public void delete(T value)
     {
       root = delete(value,root);
     }
+    /**
+    * Delete object from the Binary Search Tree
+    * @param value Object to delete from the Binary Search Tree
+    * @param node Node to look for deletion.
+    * @return BinaryNode<T>
+    */
     public BinaryNode<T> delete(T value,BinaryNode<T> node)
     {
       if(node == null)
@@ -159,12 +175,19 @@ public class BinarySearchTree<T extends Comparable>
 
       return 1 + Count(node.lessNode) + Count(node.greatNode);
     }
-
+    /**
+    * Determine the Height of the Tree
+    * @return int
+    */
     public int Height()
     {
       return Height(root);
     }
-
+    /**
+    * Determine the Height of a subtree.
+    * @param node Node to count Height of.
+    * @return int
+    */
     public int Height(BinaryNode<T> node)
     {
       if(node == null)
@@ -187,6 +210,7 @@ public class BinarySearchTree<T extends Comparable>
     * Returns null if object cannot be found.
     * Uses compareTo function so that objects that are equal are defined by the object implementation
     * @param value Object that will be searched for in the Binary Search Tree
+    * @return BinaryNode<T>
     */
     public BinaryNode<T> find(T value)
     {
@@ -218,7 +242,14 @@ public class BinarySearchTree<T extends Comparable>
           return find(value,root.lessNode);
       }
     }
-
+    /**
+    * Finds Object in Binrary Search Tree
+    * Returns null if object cannot be found.
+    * Uses compareTo function so that objects that are equal are defined by the object implementation
+    * @param value Object that will be searched for in the Binary Search Tree
+    * @param node Node to start search from.
+    * @return BinaryNode<T>
+    */
     public BinaryNode<T> find(T value, BinaryNode<T> node)
     {
       if(node == null)
@@ -301,10 +332,19 @@ public class BinarySearchTree<T extends Comparable>
       data.add(node.value);
       getDataInOrder(node.greatNode,data);
     }
+    /**
+    * Gets the children of a node.
+    * @param data List that data will be stored in.
+    */
     public void getChildren(ArrayList<T> data)
     {
       getChildren(root,data);
     }
+    /**
+    * Gets the children of a node.
+    * @param node Node to start getting child nodes from.
+    * @param data List that data will be stored in.
+    */
     public void getChildren(BinaryNode<T> node, ArrayList<T> data)
     {
       if(data == null)
@@ -314,11 +354,19 @@ public class BinarySearchTree<T extends Comparable>
         getDataInOrder(node.lessNode,data);
         getDataInOrder(node.greatNode,data);
     }
+    /**
+    * Gets the smallest value in the tree.
+    * @return BinaryNode<T>
+    */
     public BinaryNode<T> getMin()
     {
       return getMin(root);
     }
-
+    /**
+    * Gets the smallest value in the tree.
+    * @param node Node to use to find the smallest value in a subtree.
+    * @return BinaryNode<T>
+    */
     public BinaryNode<T> getMin(BinaryNode<T> node)
     {
       if(node == null)
@@ -334,6 +382,10 @@ public class BinarySearchTree<T extends Comparable>
         return getMin(node.lessNode);
       }
     }
+    /**
+    * Turns the debug function of the tree on or off.
+    * @param value boolean value to set the debug option.
+    */
     public void Debug(boolean value)
     {
       debug = value;
