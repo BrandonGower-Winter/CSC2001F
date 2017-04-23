@@ -24,4 +24,9 @@ public class BinaryNode<T extends Comparable>
     {
       return this.value.compareTo(value);
     }
+
+    public T Value()
+    {
+      return value;
+    }
 }

@@ -13,8 +13,8 @@ import java.util.*;
 */
 public class BinarySearchTree<T extends Comparable>
 {
-    //private variables
     protected BinaryNode<T> root;
+    protected boolean debug;
     /**
     * Default constructor for Binary Search Tree.
     * Sets root node to null
@@ -22,6 +22,7 @@ public class BinarySearchTree<T extends Comparable>
     public BinarySearchTree()
     {
         root=null;
+        debug = false;
     }
     /**
     * Constructor for Binary Search Tree that has one argument
@@ -30,6 +31,7 @@ public class BinarySearchTree<T extends Comparable>
     public BinarySearchTree(T rootValue)
     {
         root = new BinaryNode<T>(rootValue);
+        debug = false;
     }
 
     //Add new item to Tree
@@ -47,6 +49,8 @@ public class BinarySearchTree<T extends Comparable>
       if(currentNode == null)
       {
         currentNode = new BinaryNode(valueToAdd);
+        if(debug)
+          System.out.println("Object: " + valueToAdd.toString() + " was added to the tree.");
         return true;
       }
       if(currentNode.compareTo(valueToAdd) > 0)
@@ -69,23 +73,31 @@ public class BinarySearchTree<T extends Comparable>
       //Implement
       if(node == null)
       {
-        return true;
+        return false;
       }
-      if(node.lessNode == null && root.greatNode == null)
+      if(node.lessNode == null && node.greatNode == null)
       {
+        if(debug)
+          System.out.println("Object: " + node.value.toString() + " was deleted from the tree.\nHad no children.");
         node = null;
         return true;
       }
       if(node.lessNode != null && node.greatNode == null)
       {
+        if(debug)
+          System.out.println("Object: " + node.value.toString() + " was deleted from the tree.\nHad 1 child: lessNode.");
         node = node.lessNode;
         return true;
       }
       if(node.greatNode != null && node.lessNode == null)
       {
+        if(debug)
+          System.out.println("Object: " + node.value.toString() + " was deleted from the tree.\nHad 1 child: greatNode.");
         node = node.greatNode;
         return true;
       }
+      if(debug)
+        System.out.println("Object: " + node.value.toString() + " was deleted from the tree.\nHad 2 children.");
       BinaryNode<T> minNode = getMin(node.greatNode);
       node.value = minNode.value;
       minNode = null;
@@ -149,11 +161,15 @@ public class BinarySearchTree<T extends Comparable>
     {
       if(node == null)
       {
+        if(debug)
+          System.out.println("Searched for Object: " + value.toString() + " and was not found");
         return null;
       }
       int compareVal = node.compareTo(value);
       if(compareVal == 0)
       {
+        if(debug)
+          System.out.println("Searched for Object: " + value.toString() + " and was found");
         return node;
       }
       if(compareVal > 0)
@@ -249,5 +265,9 @@ public class BinarySearchTree<T extends Comparable>
       {
         return getMin(node.lessNode);
       }
+    }
+    public void Debug(boolean value)
+    {
+      debug = value;
     }
 }

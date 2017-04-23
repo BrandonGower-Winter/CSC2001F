@@ -10,13 +10,16 @@ DOCPATH = doc/
 .java.class:
 						$(JC) -cp .:./bin:../packages/ -d $(JCLASSDIR) $(JFLAGS) $*.java
 
-CLASSES = $(SRC)Person.java
+CLASSES = $(SRC)Person.java\
+					$(SRC)SearchIt.java\
+					$(SRC)SearchAVL.java
 
 
 
 TESTFILES = $(TEST)TestBinarySearchTree.java\
 						$(TEST)TestRunner.java\
-						$(TEST)TestPerson.java
+						$(TEST)TestPerson.java\
+						$(TEST)TestAVLTree.java
 
 default: classes compiletests
 
@@ -32,5 +35,5 @@ generatedocuments:
 		javadoc -d ./doc/ $(CLASSES)
 
 clean:
-			$(RM) $(JCLASSDIR)*
+			$(RM)r $(JCLASSDIR)*
 			$(RM) $(DOCPATH)*
