@@ -38,7 +38,7 @@ public class TestBinarySearchTree
     bst.add("Jane Doe");
     bst.add("Billy Bob");
     bst.add("John Doe");
-    assertEquals("John Doe",bst.find("John Doe"));
+    assertEquals("John Doe",bst.find("John Doe").Value());
   }
   //Test to see if value that doesn't exist can't be found within the BinarySearchTree
   @Test
@@ -65,5 +65,17 @@ public class TestBinarySearchTree
     assertEquals("Allelujah Haptism",list.get(0));
     assertEquals("Lockon Stratos",list.get(1));
     assertEquals("Setsuna F. Seiei",list.get(2));
+  }
+  @Test
+  public void testDelete()
+  {
+    ArrayList list = new ArrayList();
+    bst = new BinarySearchTree();
+
+    bst.add("A");
+    bst.add("B");
+    bst.add("C");
+    bst.delete("A");
+    assertEquals(bst.Count(),2);
   }
 }
