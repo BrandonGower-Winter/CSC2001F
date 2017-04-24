@@ -35,8 +35,8 @@ junit:
 		java -cp $(JUNITPATH) TestRunner
 
 jacoco:
-		#java -javaagent:../lib/jacocoagent.jar -cp $(JUNITPATH) TestRunner
-		java -cp ../lib/org.jacoco.core-0.7.9.201702052155.jar:../lib/org.jacoco.report-0.7.9.201702052155.jar:../lib/asm-5.0.4.jar:../lib/asm-commons-5.0.4.jar:../lib/asm-tree-5.0.4.jar:../lib/commons-cli-1.3.1.jar:../lib Report --reporttype html --classes ./bin/TestPerson .
+		touch jacoco.exec
+		java -cp ../lib/org.jacoco.core-0.7.9.201702052155.jar:../lib/org.jacoco.report-0.7.9.201702052155.jar:../lib/asm-5.0.4.jar:../lib/asm-commons-5.0.4.jar:../lib/asm-tree-5.0.4.jar:../lib/commons-cli-1.3.1.jar:../lib Report --reporttype html .
 
 runSearchIt:
 		java -cp $(JUNITPATH) SearchIt
@@ -51,3 +51,5 @@ generatedocuments:
 clean:
 			$(RM)r $(JCLASSDIR)*
 			$(RM)r $(DOCPATH)*
+			$(RM) jacoc.exec
+			$(RM)r /coveragereport
