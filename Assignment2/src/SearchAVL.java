@@ -42,7 +42,6 @@ public class SearchAVL
       System.err.println("Data file not found");
     }
     //Get query from text file and print search results
-    /*
     try
     {
       Scanner scFile = new Scanner(new File("./resources/querydata"));
@@ -70,7 +69,7 @@ public class SearchAVL
     {
       System.err.println("Query file not found");
     }
-    */
+    /*
     try
     {
       Scanner scFile = new Scanner(new File("./resources/querydata"));
@@ -89,5 +88,6 @@ public class SearchAVL
     {
       System.err.println("Query file not found");
     }
+    */
   }
 }

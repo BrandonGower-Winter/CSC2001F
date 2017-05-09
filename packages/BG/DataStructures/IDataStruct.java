@@ -3,7 +3,18 @@
 package BG.DataStructures;
 public interface IDataStruct<T>
 {
-  public boolean add();
-  public boolean delete();
-  public T find();
+
+  private int count;
+
+  public void add(T value);
+  //Delete specific entry
+  public void delete(T value);
+  //Find specific entry
+  public T find(T value);
+  //Count number of elements
+  public int Count();
+  //getFirst
+  public T getFirst();
+  //getLast
+  public T getLast();
 }
