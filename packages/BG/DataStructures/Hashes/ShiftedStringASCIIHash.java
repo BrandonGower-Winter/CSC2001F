@@ -1,6 +1,7 @@
 package BG.DataStructures.Hashes;
 
 import java.lang.*;
+import java.lang.Math;
 
 public class ShiftedStringASCIIHash extends HashFunction
 {
@@ -8,7 +9,7 @@ public class ShiftedStringASCIIHash extends HashFunction
 
   public ShiftedStringASCIIHash()
   {
-    seed = 37;
+    seed = 7;
   }
   public ShiftedStringASCIIHash(int seed)
   {
@@ -22,7 +23,7 @@ public class ShiftedStringASCIIHash extends HashFunction
     {
       result = (result*seed) + (int)c;
     }
-    return result;
+    return Math.abs(result);
   }
   public void Seed(int value)
   {

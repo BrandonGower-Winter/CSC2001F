@@ -2,8 +2,6 @@ JC = javac
 JFLAGS = -g
 JCLASSDIR = bin/
 SRC = src/
-TEST = tests/
-JUNITPATH = ./bin/:../lib/junit/junit.jar:../lib/junit/hamcrest_core.jar:../packages
 DOCPATH = docs/
 PACKAGE = ../packages/BG/DataStructures/Hashes
 
@@ -12,8 +10,7 @@ PACKAGE = ../packages/BG/DataStructures/Hashes
 						$(JC) -cp .:./bin:../packages/ -d $(JCLASSDIR) $(JFLAGS) $*.java
 
 CLASSES = $(SRC)Person.java\
-					$(SRC)SearchIt.java\
-					$(SRC)SearchAVL.java
+					$(SRC)RunHashFunctions.java
 
 PACKAGEFILES = $(PACKAGE)ConstantReturnHash.java\
 							 $(PACKAGE)HashFuntion.java\
@@ -21,9 +18,12 @@ PACKAGEFILES = $(PACKAGE)ConstantReturnHash.java\
 							 $(PACKAGE)ShiftedStringASCIIHash.java\
 							 $(PACKAGE)UniversalStringHash.java
 
-default: classes doc
+default: classes
 
 classes: $(CLASSES:.java=.class)
+
+execute:
+				java -cp ./bin:../packages/ RunHashFunctions
 
 doc:
 		javadoc -d ./docs/ $(CLASSES)
