@@ -6,6 +6,6 @@ public class HashFunction
 {
   public int hash(Object key)
   {
-    return value.hashCode();
+    return key.hashCode();
   }
 }

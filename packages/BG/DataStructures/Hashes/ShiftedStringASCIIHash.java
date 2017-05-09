@@ -1,17 +1,35 @@
 package BG.DataStructures.Hashes;
 
+import java.lang.*;
+
 public class ShiftedStringASCIIHash extends HashFunction
 {
+  private int seed;
+
+  public ShiftedStringASCIIHash()
+  {
+    seed = 37;
+  }
+  public ShiftedStringASCIIHash(int seed)
+  {
+    this.seed = seed;
+  }
+
   public int hash(Object key)
   {
-    if(!(value instanceof String))
-      throw new Exception("Value entered into hash is not of type String");
-
     int result = 0;
-    for(char c : value.toCharArray())
+    for(char c : ((String)key).toCharArray())
     {
-      result+= (int)c;
+      result = (result*seed) + (int)c;
     }
     return result;
+  }
+  public void Seed(int value)
+  {
+    seed = value;
+  }
+  public int Seed()
+  {
+    return seed;
   }
 }

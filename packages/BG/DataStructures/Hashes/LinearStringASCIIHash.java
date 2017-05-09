@@ -1,14 +1,13 @@
 package BG.DataStructures.Hashes;
 
+import java.lang.*;
+
 public class LinearStringASCIIHash extends HashFunction
 {
   public int hash(Object key)
   {
-    if(!(value instanceof String))
-      throw new Exception("Value entered into hash is not of type String");
-
     int result = 0;
-    for(char c : value.toCharArray())
+    for(char c : ((String)key).toCharArray())
     {
       result+= (int)c;
     }
