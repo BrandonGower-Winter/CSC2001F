@@ -3,7 +3,7 @@ JFLAGS = -g
 JCLASSDIR = bin/
 SRC = src/
 DOCPATH = docs/
-PACKAGE = ../packages/BG/DataStructures/Hashes
+PACKAGE = ../packages/BG/
 
 .SUFFIXES: .java .class
 .java.class:
@@ -12,13 +12,14 @@ PACKAGE = ../packages/BG/DataStructures/Hashes
 CLASSES = $(SRC)Person.java\
 					$(SRC)RunHashFunctions.java
 
-PACKAGEFILES = $(PACKAGE)ConstantReturnHash.java\
-							 $(PACKAGE)HashFuntion.java\
-							 $(PACKAGE)LinearStringASCIIHash.java\
-							 $(PACKAGE)ShiftedStringASCIIHash.java\
-							 $(PACKAGE)UniversalStringHash.java
+PACKAGEFILES = $(PACKAGE)DataStructures/Hashes/ConstantReturnHash.java\
+							 $(PACKAGE)DataStructures/Hashes/HashFunction.java\
+							 $(PACKAGE)DataStructures/Hashes/LinearStringASCIIHash.java\
+							 $(PACKAGE)DataStructures/Hashes/ShiftedStringASCIIHash.java\
+							 $(PACKAGE)DataStructures/Hashes/UniversalStringHash.java\
+							 $(PACKAGE)Util/HashEntropy.java
 
-default: classes
+default: classes doc
 
 classes: $(CLASSES:.java=.class)
 
@@ -26,8 +27,8 @@ execute:
 				java -cp ./bin:../packages/ RunHashFunctions
 
 doc:
-		javadoc -d ./docs/ $(CLASSES)
-		javadoc -d ./docs/ $(PACKAGEFILES)
+		javadoc -cp ./bin:../packages/ -d ./docs/ $(CLASSES)
+		javadoc -cp ./bin:../packages/ -d ./docs/ $(PACKAGEFILES)
 
 clean:
 			$(RM)r $(JCLASSDIR)*

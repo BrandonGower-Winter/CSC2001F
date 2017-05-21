@@ -5,6 +5,11 @@ import java.io.File;
 import BG.DataStructures.Hashes.*;
 import BG.Util.HashEntropy;
 
+/**
+* Testing place for HashEntropy utility
+* Contains a main class and tests the entropy of 4 different hash funstions on data located int he resources folder.
+* @author Brandon Gower-Winter
+*/
 public class RunHashFunctions
 {
   public static void main(String[] args) {
@@ -26,9 +31,11 @@ public class RunHashFunctions
         //Calculating Hashes
         HashFunction hf = new UniversalStringHash(20011,912471914);
         he = new HashEntropy(20011,hf);
-        for(String name : names)
+        for(int i = 0; i<names.size(); i++)
         {
-          he.addTest(name);
+          int val = he.addTest(names.get(i));
+          if(i < 10)
+            System.out.println("Hash value for " +names.get(i)+" is: " + val%20011);
         }
         he.Done();
         he.calculateProbability();
@@ -36,9 +43,11 @@ public class RunHashFunctions
         System.out.println("Entropy of universal hash function is: " + he.calculateEntropy());
         hf = new ConstantReturnHash();
         he = new HashEntropy(20011,hf);
-        for(String name : names)
+        for(int i = 0; i<names.size(); i++)
         {
-          he.addTest(name);
+          int val = he.addTest(names.get(i));
+          if(i < 10)
+            System.out.println("Hash value for " +names.get(i)+" is: " + val%20011);
         }
         he.Done();
         he.calculateProbability();
@@ -46,9 +55,11 @@ public class RunHashFunctions
         System.out.println("Entropy of constant return hash function is: " + he.calculateEntropy());
         hf = new LinearStringASCIIHash();
         he = new HashEntropy(20011,hf);
-        for(String name : names)
+        for(int i = 0; i<names.size(); i++)
         {
-          he.addTest(name);
+          int val = he.addTest(names.get(i));
+          if(i < 10)
+            System.out.println("Hash value for " +names.get(i)+" is: " + val%20011);
         }
         he.Done();
         he.calculateProbability();
@@ -56,9 +67,12 @@ public class RunHashFunctions
         System.out.println("Entropy of ACII summation hash function is: " + he.calculateEntropy());
         hf = new ShiftedStringASCIIHash();
         he = new HashEntropy(20011,hf);
-        for(String name : names)
+        for(int i = 0; i<names.size(); i++)
         {
-          he.addTest(name);
+          int val = he.addTest(names.get(i));
+          if(i < 10)
+            System.out.println("Hash value for " +names.get(i)+" is: " + val%20011);
+
         }
         he.Done();
         he.calculateProbability();
