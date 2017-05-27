@@ -8,16 +8,64 @@ public class HospitalGraph
   private int numHosp;
   private int numVictims;
 
+  private Queue<Integer> victims;
+  private int hospitals[];
+
   public HospitalGraph(int numNodes, String nodeData[], int numHosp, String hospData, int numVictims, String vicData)
   {
     nodes = new GraphNode[numNodes];
     this.numHosp = numHosp;
     this.numVictims = numVictims;
 
+    victims = new ArrayDeque();
+    hospitals = new int[numHosp];
+
     populateNodes(nodeData);
     populateHospitals(hospData);
     populateVictims(vicData);
   }
+
+  public String solve()
+  {
+    String stringToReturn = "";
+    while(!victims.isEmpty())
+    {
+      int vicIndex = victims.remove().intValue();
+      stringToReturn+= "victim " + vicIndex + "\n";
+      int minDistance = Integer.MAX_VALUE;
+      ArrayList<Integer> shortHospitals = new ArrayList();
+      ArrayList<String> paths = new ArrayList();
+      //int dist = Integer.MAX_VALUE;
+      for(int i = 0; i < hospitals.length; i++)
+      {
+        int toVic =  new PathSet(hospitals[i],nodes).getDistance(vicIndex);
+        int toHosp = new PathSet(vicIndex,nodes).getDistance(hospitals[i]);
+        //System.out.println("Victim cost: " + toVic + " Hospital Cost: " + toHosp + " Total: " + (toHosp + toVic));
+        if(toVic + toHosp < minDistance)
+        {
+          shortHospitals.clear();
+          paths.clear();
+          minDistance = toVic + toHosp;
+          shortHospitals.add(hospitals[i]);
+          String stringToAdd = new PathSet(hospitals[i],nodes).getPath(vicIndex) + new PathSet(vicIndex,nodes).getPath(hospitals[i]).substring(1);
+          paths.add(stringToAdd);
+        }
+        else if(toVic + toHosp == minDistance)
+        {
+          shortHospitals.add(hospitals[i]);
+          String stringToAdd = new PathSet(hospitals[i],nodes).getPath(vicIndex) + new PathSet(vicIndex,nodes).getPath(hospitals[i]).substring(1);
+          paths.add(stringToAdd);
+        }
+      }
+      for(int i = 0; i < shortHospitals.size(); i++)
+      {
+        stringToReturn+= "hospital " + shortHospitals.get(i) +"\n";
+        stringToReturn+= paths.get(i) + "\n";
+      }
+    }
+    return stringToReturn.substring(0,stringToReturn.length() - 1);
+  }
+
 
   private void populateNodes(String nodeData[])
   {
@@ -35,11 +83,16 @@ public class HospitalGraph
 
   private void populateHospitals(String hospData)
   {
+    int counter = 0;
     Scanner line = new Scanner(hospData);
     while(line.hasNextInt())
     {
-      nodes[line.nextInt()].isHospital = true;
+      int index = line.nextInt();
+      nodes[index].isHospital = true;
+      hospitals[counter] = index;
+      counter++;
     }
+    Arrays.sort(hospitals);
   }
 
   private void populateVictims(String vicData)
@@ -47,7 +100,9 @@ public class HospitalGraph
     Scanner line = new Scanner(vicData);
     while(line.hasNextInt())
     {
-      nodes[line.nextInt()].numVictims += 1;
+      int index = line.nextInt();
+      nodes[index].numVictims += 1;
+      victims.add(index);
     }
   }
 

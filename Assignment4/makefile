@@ -11,8 +11,9 @@ DOCPATH = docs/
 						$(JC) -cp .:./bin:../packages/ -d $(JCLASSDIR) $(JFLAGS) $*.java
 
 CLASSES = $(SRC)GraphNode.java\
-					$(SRC)HospitalGraph.java\
-					$(SRC)SimulatorOne.java
+					$(SRC)PathSet.java\
+					$(SRC)SimulatorOne.java\
+					$(SRC)HospitalGraph.java
 
 TESTFILES = $(TEST)TestBinarySearchTree.java
 

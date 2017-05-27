@@ -10,6 +10,17 @@ Test 1:
 2 3
 2
 0 1
+Test 2:
+5
+0 1 3 4 3
+1 4 5 2 4
+2 3 1 4 3
+3 0 2 4 4
+4 0 3 1 5 2 3 3 4
+1
+0
+3
+1 2 3
 */
 import java.util.*;
 
@@ -30,6 +41,6 @@ public class SimulatorOne
     String vicData = input.nextLine();
 
     HospitalGraph graph = new HospitalGraph(nodeNum,nodeData,numHosp,hospData,numVictims,vicData);
-    //System.out.println(graph.toString());
+    System.out.println(graph.solve());
   }
 }
