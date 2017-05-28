@@ -38,6 +38,25 @@ public class HospitalGraph
       //int dist = Integer.MAX_VALUE;
       for(int i = 0; i < hospitals.length; i++)
       {
+
+        if(vicIndex == hospitals[i])
+        {
+          if(minDistance == 0)
+          {
+            shortHospitals.add(vicIndex);
+            paths.add(new Integer(vicIndex).toString());
+          }
+          else
+          {
+            shortHospitals.clear();
+            paths.clear();
+            shortHospitals.add(vicIndex);
+            paths.add(new Integer(vicIndex).toString());
+            minDistance = 0;
+          }
+          continue;
+        }
+
         int toVic =  new PathSet(hospitals[i],nodes).getDistance(vicIndex);
         int toHosp = new PathSet(vicIndex,nodes).getDistance(hospitals[i]);
         //System.out.println("Victim cost: " + toVic + " Hospital Cost: " + toHosp + " Total: " + (toHosp + toVic));
@@ -47,13 +66,13 @@ public class HospitalGraph
           paths.clear();
           minDistance = toVic + toHosp;
           shortHospitals.add(hospitals[i]);
-          String stringToAdd = new PathSet(hospitals[i],nodes).getPath(vicIndex) + new PathSet(vicIndex,nodes).getPath(hospitals[i]).substring(1);
+          String stringToAdd = new PathSet(hospitals[i],nodes).getPath(vicIndex,false) + " " + new PathSet(vicIndex,nodes).getPath(hospitals[i],true);
           paths.add(stringToAdd);
         }
         else if(toVic + toHosp == minDistance)
         {
           shortHospitals.add(hospitals[i]);
-          String stringToAdd = new PathSet(hospitals[i],nodes).getPath(vicIndex) + new PathSet(vicIndex,nodes).getPath(hospitals[i]).substring(1);
+          String stringToAdd = new PathSet(hospitals[i],nodes).getPath(vicIndex,false) + " " + new PathSet(vicIndex,nodes).getPath(hospitals[i],true);
           paths.add(stringToAdd);
         }
       }

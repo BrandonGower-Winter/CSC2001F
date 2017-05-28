@@ -25,7 +25,7 @@ public class PathSet
     while(!isEmpty(unvisited))
     {
       int index = getMin(unvisited);
-      //this.nodes[index] = unvisited[index];
+      this.nodes[index] = unvisited[index];
       unvisited[index] = null;
       for(Enumeration<Integer> e = nodes[index].paths.keys(); e.hasMoreElements();)
       {
@@ -80,7 +80,7 @@ public class PathSet
     return  stringToReturn;
   }
 
-  public String getPath(int destination)
+  public String getPath(int destination, boolean returnTrip)
   {
     if(nodes[destination].pathTo == -1)
     {
@@ -88,13 +88,23 @@ public class PathSet
     }
     int current = destination;
     String toReturn = "";
+    ArrayList<String> pathList = new ArrayList();
     while(nodes[current].pathTo != current)
     {
-      toReturn +=  current + " ";
+      pathList.add(current+" ");
       current = nodes[current].pathTo;
     }
-    toReturn += current;
-    return new StringBuilder(toReturn).reverse().toString();
+    pathList.add(current+" ");
+    for(int i = pathList.size()-1; i >= 0; i--)
+    {
+      if(i == pathList.size()-1 && returnTrip)
+        continue;
+      else if(i == 0)
+        toReturn+=pathList.get(i).substring(0,pathList.get(i).length()-1);
+      else
+        toReturn+=pathList.get(i);
+    }
+    return toReturn;
   }
 
   public int getDistance(int index)

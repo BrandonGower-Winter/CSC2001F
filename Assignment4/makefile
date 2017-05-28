@@ -10,36 +10,21 @@ DOCPATH = docs/
 .java.class:
 						$(JC) -cp .:./bin:../packages/ -d $(JCLASSDIR) $(JFLAGS) $*.java
 
-CLASSES = $(SRC)GraphNode.java\
-					$(SRC)PathSet.java\
-					$(SRC)SimulatorOne.java\
-					$(SRC)HospitalGraph.java
-
-TESTFILES = $(TEST)TestBinarySearchTree.java
+CLASSES = $(SRC)AdvancedGraphNode.java\
+					$(SRC)Hospital.java\
+					$(SRC)Ambulance.java\
+					$(SRC)Victim.java\
+					$(SRC)TrafficIncident.java\
+					$(SRC)AdvancedPathSet.java\
+					$(SRC)AdvancedHospitalGraph.java\
+					$(SRC)SimulatorTwo.java
 
 default: classes
 
 classes: $(CLASSES:.java=.class)
 
-compiletests:
-						$(JC) -cp $(JUNITPATH) -d $(JCLASSDIR) $(TESTFILES)
-
-test:
-		 java -cp $(JUNITPATH) TestRunner
-
-report:
-		java -javaagent:../lib/jacocoagent.jar -cp $(JUNITPATH) TestRunner
-		java -cp ../lib/org.jacoco.core-0.7.9.201702052155.jar:../lib/org.jacoco.report-0.7.9.201702052155.jar:../lib/asm-5.0.4.jar:../lib/asm-commons-5.0.4.jar:../lib/asm-tree-5.0.4.jar:../lib/commons-cli-1.3.1.jar:../lib Report --reporttype html -c ./bin -s ./src:./test .
-
-runOne:
-			java -cp ./bin/ SimulatorOne
-
-doc:
-		javadoc -d ./docs/ $(CLASSES)
-		javadoc -d ./docs/ $(PACKAGEFILES)
+runTwo:
+			java -cp ./bin/ SimulatorTwo
 
 clean:
 			$(RM)r $(JCLASSDIR)*
-			$(RM)r $(DOCPATH)*
-			$(RM) jacoco.exec
-			$(RM)r ./coveragereport/
